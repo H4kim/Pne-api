@@ -7,7 +7,8 @@ router.route('/')
     .get(fournisseurController.getAllFournisseurs) 
     .post(fournisseurController.addFournisseur) 
     
-router.route('/:id')
+router.route('/:fournisseurId')
+    .get(fournisseurController.getOneFournisseur) 
     .delete(fournisseurController.deleteFournisseur) 
     .patch(fournisseurController.updateFournisseur) 
 

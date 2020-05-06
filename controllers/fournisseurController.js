@@ -4,14 +4,24 @@ const AppError = require('../utils/appError')
 
 exports.getAllFournisseurs = catchAsync(async (req,res,next) => {
 
-    const fournisseurs = await Fournisseur.find().populate({
-        path : 'tempStocks'
-    })
+    const fournisseurs = await Fournisseur.find()
 
     res.status(200).json({
         status : 'success',
         data : {
             fournisseurs
+        }
+    })
+})   
+
+exports.getOneFournisseur = catchAsync(async (req,res,next) => {
+
+    const fournisseur = await Fournisseur.findById(req.params.fournisseurId)
+
+    res.status(200).json({
+        status : 'success',
+        data : {
+            fournisseur
         }
     })
 })   
@@ -27,7 +37,7 @@ exports.addFournisseur =  catchAsync(async (req,res,next) => {
 })   
 
 exports.updateFournisseur = catchAsync(async (req,res,next) => {
-        const fournisseur = await Fournisseur.findByIdAndUpdate(req.params.id, req.body , {runValidators : true , new:true})
+        const fournisseur = await Fournisseur.findByIdAndUpdate(req.params.fournisseurId, req.body , {runValidators : true , new:true})
         
         if(!fournisseur) return next(new AppError('No suplier with this id' , 404))
         
@@ -41,7 +51,7 @@ exports.updateFournisseur = catchAsync(async (req,res,next) => {
 })
 
 exports.deleteFournisseur = catchAsync(async (req,res,next) => {
-    const fournisseur = await Fournisseur.findByIdAndDelete(req.params.id)
+    const fournisseur = await Fournisseur.findByIdAndDelete(req.params.fournisseurId)
 
     if(!fournisseur) return next(new AppError('No suplier with this id' , 404))
 

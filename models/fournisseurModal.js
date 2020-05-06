@@ -14,10 +14,10 @@ const fourniseurSchema = new mongoose.Schema({
 })
 
 // populate all tempoStock for one fournisseur (parent refferencing in tempStock)
-fourniseurSchema.virtual('tempStocks' , {
-    ref : 'TempoStock',
+fourniseurSchema.virtual('Stocks' , {
+    ref : 'Stock',
     localField : '_id',
-    foreignField : 'fournisseur'
+    foreignField : 'fournisseurId'
 })
 
 const Fournisseur = mongoose.model('Fournisseur' , fourniseurSchema)

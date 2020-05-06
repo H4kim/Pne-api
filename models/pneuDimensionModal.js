@@ -1,44 +1,44 @@
 const mongoose = require('mongoose');
 
 const pneuDimensionSchema = new mongoose.Schema({
-    Designation : {
+    designation : {
         type : String,
         required : true,
         unique : true
     },
-    Marque : {
+    marque : {
         type : String,
         required : true
     },
-    Collection : {
+    collect : {
         type : String,
         required : true
     },
-    Type : {
+    type : {
         type : String,
         required : true
     },
-    Largeur : {
+    largeur : {
         type : String,
         required : true
     },
-    Hauteur : {
+    hauteur : {
         type : String,
         required : true
     },
-    Diametre : {
+    diametre : {
         type : String,
         required : true
     },
-    Charge : {
+    charge : {
         type : String,
         required : true
     },
-    Vitesse : {
+    vitesse : {
         type : String,
         required : true
     },
-    Marge : {
+    marge : {
         type : String,
         required : true
     },

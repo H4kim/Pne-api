@@ -2,18 +2,19 @@ const express = require('express');
 const morgan = require('morgan');
 const errorCotnroller = require('./controllers/errorsController')
 const fournisseurRoute = require('./routes/fournisseurRoute');
-const tempoStockRoute = require('./routes/tempoStockRoute')
+const stockRoute = require('./routes/stockRoute')
 const pneuDimensionRoute = require('./routes/pneuDimensionRoute')
-const mappingRoute = require('./routes/mappingRoute')
+const productRoute = require('./routes/productRoute')
 const app = express();
 
 app.use(express.json())
 app.use(morgan('tiny'))
 
 app.use('/api/fournisseurs' , fournisseurRoute)
-app.use('/api/tempoStock' , tempoStockRoute)
+app.use('/api/stock' , stockRoute)
 app.use('/api/pneu-dimension' , pneuDimensionRoute)
-app.use('/api/mapping' , mappingRoute)
+app.use('/api/products' , productRoute)
+
 
 //show error for No route defined 
 app.use('*' , (req,res,next) => {
