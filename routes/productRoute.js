@@ -10,7 +10,8 @@ router.get('/' ,  productController.getAllProduct)
 //get all mapped product from one fournisseur
 router.get('/fournisseurs/:fournisseurId' , productController.getFournisseurProduct)
 
-
+//get One product
+router.get('/:productId' , productController.getOneProduct)
 
 
 module.exports = router

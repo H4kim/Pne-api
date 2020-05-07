@@ -24,7 +24,8 @@ exports.addStock = catchAsync(async(req,res,next) => {
 })
 
 exports.getAllStock = catchAsync(async(req,res,next) => {
-    const stock = await Stock.find({idPneuDim : {$eq : ''} }) 
+    const stock = await Stock.find({'mapped.isMapped' : false })
+    console.log(stock)
     
     res.status(200).json({
         status: 'success',
@@ -33,7 +34,7 @@ exports.getAllStock = catchAsync(async(req,res,next) => {
 })
 
 exports.getFournisseurStocks = catchAsync(async(req,res,next) => {
-    const stock = await Stock.find({fournisseurId : req.params.fournisseurId , idPneuDim : {$eq : ''} });
+    const stock = await Stock.find({fournisseurId : req.params.fournisseurId , 'mapped.isMapped' : false});
 
     res.status(200).json({
         status: 'success',
@@ -55,12 +56,19 @@ exports.deleteOneStock = catchAsync(async(req,res,next) => {
 
 // needed in add mapping 
 exports.updateStock = catchAsync(async(req,res,next) => {
+    
+    req.body.mapped = {}
+    req.body.mapped.isMapped = true
+    req.body.mapped.idPneuDim = req.body.idPneuDim
+    
+    console.log(req.body)
     const stock = await Stock.findByIdAndUpdate(req.params.stockId , req.body , {
         runValidators : true,
         new : true
     });
 
     if(!stock) return next(new AppError('Somthing went wrong'))
+
 
     res.status(200).json({
         status: 'success',

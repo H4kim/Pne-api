@@ -18,9 +18,16 @@ const stockSchema = new mongoose.Schema({
         ref : 'Fournisseur',
         required : [true , 'Product must have a suplier ID']
     },
-    idPneuDim : {
-        type : String,
-        default : ''
+    
+    mapped : {
+        isMapped:{
+            type : Boolean,
+            default : false
+        },
+        idPneuDim : {
+            type : mongoose.Schema.ObjectId,
+            ref : 'PneuDimension'
+        }
     }
 })
 

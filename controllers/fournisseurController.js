@@ -18,6 +18,10 @@ exports.getOneFournisseur = catchAsync(async (req,res,next) => {
 
     const fournisseur = await Fournisseur.findById(req.params.fournisseurId)
 
+    //populate stock/poduct in fournisseurs
+    // const fournisseur = await Fournisseur.findById(req.params.fournisseurId).populate({path : 'Stocks' , populate : {path : 'mapped.idPneuDim'}})
+
+
     res.status(200).json({
         status : 'success',
         data : {

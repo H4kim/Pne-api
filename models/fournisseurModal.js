@@ -20,6 +20,8 @@ fourniseurSchema.virtual('Stocks' , {
     foreignField : 'fournisseurId'
 })
 
+
+
 const Fournisseur = mongoose.model('Fournisseur' , fourniseurSchema)
 
 module.exports = Fournisseur
